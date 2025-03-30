@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Great Buddha of Kamakura - Japan's Serenity</title>
+    <!-- Same style section as before -->
+    <style>
+         .navbar {
+            background-color: #8B4513;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #FAF0E6;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #D2B48C;
+            text-decoration: underline;
+        }
+
+        /* Previous Styles (adjusted for navbar) */
+        body {
+            font-family: 'Garamond', serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 90px 20px 20px; /* Added top padding for navbar */
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #8B4513;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            color: #8B4513;
+            font-size: 2.8em;
+            margin: 15px 0;
+        }
+
+        .monument-image {
+            width: 100%;
+            height: auto;
+            border: 5px solid #D2B48C;
+            margin: 20px 0;
+        }
+
+        .section {
+            margin: 25px 0;
+            padding: 15px;
+            background: #FAF0E6;
+            border-left: 4px solid #CD853F;
+        }
+
+        .facts-list {
+            columns: 2;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .facts-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #D2B48C;
+        }
+
+        .quote {
+            font-style: italic;
+            text-align: center;
+            margin: 25px 0;
+            color: #696969;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .facts-list {
+                columns: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+        <div class="nav-container">
+            <img src="/Images/19_Logo.png" alt="Website Logo" class="logo">
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/home#locations">Locations</a></li>
+                <li><a href="/home#packages">Packages</a></li>
+                <li><a href="/home#about">About Us</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="header">
+            <h1>The Great Buddha of Kamakura</h1>
+            <h3>Icon of Japanese Buddhism</h3>
+        </div>
+
+        <img src="/Images/t2.jpg" 
+             alt="Kanagawa" 
+             class="monument-image" style="height:250px; width:250px; margin-left: 35%;">
+
+        <div class="section">
+            <h2>About the Monument</h2>
+            <p>The Great Buddha of Kamakura is a monumental bronze statue of Amida Buddha located at Kōtoku-in Temple. Cast in 1252, this 13.35-meter (43.8 ft) tall statue represents one of Japan's most iconic Buddhist sculptures and a National Treasure.</p>
+        </div>
+
+        <div class="section">
+            <h2>Key Features</h2>
+            <ul class="facts-list">
+                <li>🧘 Height: 13.35 meters (43.8 feet)</li>
+                <li>📍 Location: Kamakura, Kanagawa Prefecture</li>
+                <li>⚒ Construction Period: 1238-1252</li>
+                <li>🎨 Material: Bronze (originally gilded)</li>
+                <li>📅 Current Status: National Treasure of Japan</li>
+                <li>🌏 Significance: Pure Land Buddhism Symbol</li>
+            </ul>
+        </div>
+
+        <div class="quote">
+            "The Buddha sits in meditation, surviving centuries of typhoons and tsunamis,<br>
+            a testament to Japanese craftsmanship and spiritual devotion."
+        </div>
+
+        <div class="section">
+            <h2>Visitor Information</h2>
+            <dl>
+                <dt>🕒 Opening Hours:</dt>
+                <dd>8:00 AM - 5:30 PM (Daily)</dd>
+                
+                <dt>🎟 Entry Fee:</dt>
+                <dd>¥ 300 for adults | Free for children under 12</dd>
+                
+                <dt>🚶 Access:</dt>
+                <dd>7-min walk from Enoden Railway Hase Station</dd>
+            </dl>
+        </div>
+    </div>
+</body>
+</html>

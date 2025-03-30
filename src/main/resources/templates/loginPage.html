@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - Travel Addicts</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;700&display=swap"
+	rel="stylesheet">
+<style>
+:root {
+	--primary-dark: #1a365d;
+	--accent-gold: #c5a47e;
+	--light-bg: #f8f7f4;
+	--text-dark: #2d2d2b;
+	--transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+body {
+	font-family: 'Lora', serif;
+	color: var(--text-dark);
+	line-height: 1.7;
+	background-color: var(--light-bg);
+	padding-top: 100px;
+}
+
+h1, h2, h3, h4, h5 {
+	font-family: 'Playfair Display', serif;
+	font-weight: 700;
+	letter-spacing: 0.5px;
+}
+
+.navbar {
+	background: rgba(255, 255, 255, 0.98) !important;
+	box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+	padding: 1rem 0;
+}
+
+.login-container {
+	max-width: 500px;
+	margin: 2rem auto;
+	padding: 3rem;
+	background: white;
+	border-radius: 10px;
+	box-shadow: 0 5px 25px rgba(0, 0, 0, 0.06);
+}
+
+.login-title {
+	color: var(--primary-dark);
+	margin-bottom: 2rem;
+	text-align: center;
+}
+
+.form-control {
+	border: 2px solid var(--light-bg);
+	padding: 1rem;
+	margin-bottom: 1.5rem;
+	transition: var(--transition);
+}
+
+.form-control:focus {
+	border-color: var(--accent-gold);
+	box-shadow: none;
+}
+
+.login-btn {
+	background: var(--accent-gold);
+	color: white;
+	padding: 1rem 2rem;
+	border: none;
+	width: 100%;
+	font-size: 1.1rem;
+	transition: var(--transition);
+}
+
+.login-btn:hover {
+	background: var(--primary-dark);
+	transform: translateY(-2px);
+}
+
+.additional-links {
+	text-align: center;
+	margin-top: 2rem;
+}
+
+.additional-links a {
+	color: var(--primary-dark);
+	text-decoration: none;
+	transition: var(--transition);
+}
+
+.additional-links a:hover {
+	color: var(--accent-gold);
+}
+</style>
+</head>
+<body>
+
+	<form th:action="@{/login}" method="post">
+
+		<nav class="navbar navbar-expand-lg fixed-top">
+		<img alt="Logo" src="/Images/19_Logo.png" width="65px" style="margin-left: 10px">
+			<div class="container">
+				<a class="navbar-brand" href="/">Travel Addicts</a>
+				<div class="collapse navbar-collapse">
+					
+				</div>
+			</div>
+		</nav>
+
+		<section class="py-5">
+			<div class="container">
+				<div class="login-container">
+					<h2 class="login-title">Member Login</h2>
+
+					<div th:if="${param.error}" class="alert alert-danger">
+						Invalid username or password</div>
+
+					<div class="mb-4">
+						<input type="email" class="form-control" id="email" name="email"
+							placeholder="Email Address" required>
+					</div>
+
+					<div class="mb-4">
+						<input type="password" class="form-control" id="password" name="password"
+						
+							placeholder="Password" required>
+					</div>
+
+					<button type="submit" class="login-btn">Sign In</button>
+
+					<div class="additional-links mt-4">
+						<a href="/SignUp">Create New Account</a>
+					</div>
+				</div>
+			</div>
+		</section>
+	</form>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rome - Eternal City</title>
+    <style>
+        /* Same CSS as previous templates */
+        .navbar {
+            background-color: #8B4513;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #FAF0E6;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #D2B48C;
+            text-decoration: underline;
+        }
+
+        body {
+            font-family: 'Garamond', serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 90px 20px 20px;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #8B4513;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            color: #8B4513;
+            font-size: 2.8em;
+            margin: 15px 0;
+        }
+
+        .monument-image {
+            width: 100%;
+            height: auto;
+            border: 5px solid #D2B48C;
+            margin: 20px 0;
+        }
+
+        .section {
+            margin: 25px 0;
+            padding: 15px;
+            background: #FAF0E6;
+            border-left: 4px solid #CD853F;
+        }
+
+        .facts-list {
+            columns: 2;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .facts-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #D2B48C;
+        }
+
+        .quote {
+            font-style: italic;
+            text-align: center;
+            margin: 25px 0;
+            color: #696969;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .facts-list {
+                columns: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <img src="/Images/19_Logo.png" alt="Website Logo" class="logo">
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/home#locations">Locations</a></li>
+            <li><a href="/home#packages">Packages</a></li>
+            <li><a href="/home#about">About Us</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="header">
+        <h1>Rome</h1>
+        <h3>Eternal City of Empires</h3>
+    </div>
+
+    <img src="/Images/t8.jpg" 
+         alt="Rome Skyline" 
+         class="monument-image" style="height:250px; width:250px; margin-left: 35%;">
+
+    <div class="section">
+        <h2>About the City</h2>
+        <p>Rome, Italy's capital, is a sprawling metropolis with nearly 3,000 years of globally influential art, architecture, and culture. From the Colosseum to Vatican City, Rome's historic center is a UNESCO World Heritage Site preserving ancient ruins and Renaissance masterpieces.</p>
+    </div>
+
+    <div class="section">
+        <h2>Key Attractions</h2>
+        <ul class="facts-list">
+            <li>🏛 Colosseum: Ancient Amphitheater</li>
+            <li>✝ Vatican City: St. Peter's Basilica</li>
+            <li>🏺 Roman Forum: Archaeological Marvel</li>
+            <li>⛲ Trevi Fountain: Baroque Masterpiece</li>
+            <li>🏛 Pantheon: Best-preserved Roman Temple</li>
+            <li>🎨 Sistine Chapel: Michelangelo's Frescoes</li>
+        </ul>
+    </div>
+
+    <div class="quote">
+        "Roma invicta! - Unconquered Rome!"<br>
+        - Ancient Roman Proverb
+    </div>
+
+    <div class="section">
+        <h2>Visitor Information</h2>
+        <dl>
+            <dt>🕒 Best Time to Visit:</dt>
+            <dd>April-June & September-October</dd>
+            
+            <dt>🎟 Entry Fees:</dt>
+            <dd>Colosseum: €16 | Vatican Museums: €17</dd>
+            
+            <dt>🚇 Transport:</dt>
+            <dd>Metro Line A/B, Buses, and Tram Network</dd>
+            
+            <dt>🍝 Must-try:</dt>
+            <dd>Authentic Roman pasta (Cacio e Pepe)</dd>
+        </dl>
+    </div>
+</div>
+</body>
+</html>

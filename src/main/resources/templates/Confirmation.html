@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Classic Travel Confirmation</title>
+<style>
+body {
+	font-family: 'Georgia', serif;
+	background: #f5f5f5;
+	margin: 0;
+	padding: 2rem;
+}
+
+.parchment {
+	background: #fffef0;
+	max-width: 700px;
+	margin: 2rem auto;
+	padding: 3rem;
+	border: 1px solid #e0d8c0;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	position: relative;
+}
+
+.header {
+	text-align: center;
+	border-bottom: 2px solid #8b7355;
+	padding-bottom: 1rem;
+	margin-bottom: 2rem;
+}
+
+.header h1 {
+	color: #6b4e3a;
+	font-size: 2.2rem;
+	margin: 0;
+	letter-spacing: 1px;
+}
+
+.detail-section {
+	margin: 1.5rem 0;
+	padding: 1rem;
+	background: #fffae8;
+	border-left: 4px solid #8b7355;
+}
+
+.detail-row {
+	display: flex;
+	margin: 0.8rem 0;
+	padding: 0.5rem;
+}
+
+.detail-label {
+	width: 180px;
+	font-weight: bold;
+	color: #6b4e3a;
+	font-size: 0.95rem;
+}
+
+.detail-value {
+	flex-grow: 1;
+	color: #444;
+	font-size: 0.95rem;
+}
+
+.seal {
+	position: absolute;
+	top: -30px;
+	right: -30px;
+	width: 100px;
+	opacity: 0.2;
+}
+
+.footer {
+	text-align: center;
+	margin-top: 2rem;
+	color: #8b7355;
+	font-size: 0.9rem;
+}
+
+/* Classical color scheme */
+.text-primary {
+	color: #8b7355;
+}
+
+@media ( max-width : 768px) {
+	.parchment {
+		padding: 1.5rem;
+		margin: 1rem;
+	}
+	.detail-row {
+		flex-direction: column;
+	}
+	.detail-label {
+		margin-bottom: 0.5rem;
+	}
+}
+</style>
+</head>
+<body>
+	<div class="parchment">
+		<img src="/Images/18_Seal.jpg" alt="Seal" class="seal">
+
+		<div class="header">
+			<h1 th:text="'Travel Confirmation #' + ${booking.no}">Travel
+				Confirmation #1234</h1>
+			<p class="text-primary">Your Journey Awaits</p>
+		</div>
+
+		<div class="detail-section">
+			<div class="detail-row">
+				<div class="detail-label">Traveler Information</div>
+				<div class="detail-value">
+					<div th:text="${booking.name}"></div>
+					<div>
+						Age: <span th:text="${booking.age}"></span>
+					</div>
+					<div>
+						Gender: <span th:text="${booking.gender}"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="detail-section">
+			<div class="detail-row">
+				<div class="detail-label">Contact Details</div>
+				<div class="detail-value">
+					<div th:text="${booking.email}"></div>
+					<div
+						th:text="|Phone: ${#strings.substring(booking.phone, 0, 3)}-${#strings.substring(booking.phone, 3, 6)}-${#strings.substring(booking.phone, 6)}|"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="detail-section">
+			<div class="detail-row">
+				<div class="detail-label">Travel Dates</div>
+				<div class="detail-value">
+					<div th:text="|Departure: ${booking.departure}|"></div>
+					<div th:text="|Return: ${booking.returndate}|"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="detail-section">
+			<div class="detail-row">
+				<div class="detail-label">Destination Details</div>
+				<div class="detail-value">
+					<div th:text="|Destination: ${booking.destination}|"></div>
+					<div th:text="|Package: ${booking.travelPacakge}|"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="footer">
+			<p>Thank you for choosing our services</p>
+			<p>Safe travels and memorable journeys!</p>
+
+			<a th:href="@{/home}"
+				style="display: inline-block; padding: 0.8rem 1.5rem; background-color: #1a365d; color: white !important; border-radius: 5px; text-decoration: none; transition: all 0.3s ease; font-family: 'Lora', serif; font-weight: 500; margin: 20px 0; border: 2px solid #c5a47e;">
+				Home </a>
+		</div>
+	</div>
+</body>
+</html>

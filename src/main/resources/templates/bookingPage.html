@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Your Trip</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .booking-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+        }
+        .radio-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .radio-card {
+            border: 2px solid #e0e0e0;
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .radio-card:hover {
+            border-color: #c5a47e;
+        }
+        input[type="radio"]:checked + .radio-card {
+            border-color: #1a365d;
+            background: #f8f7f4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="booking-container">
+            <h2 class="text-center mb-4">Book Your Adventure</h2>
+            
+            <form th:action="@{/bookingPage}" th:object="${booking}" method="post">
+
+                <!-- Personal Details -->
+                <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-control"  th:field="*{name}" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control"  th:field="*{email}" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" th:field="*{phone}" pattern="[0-9]{10}" required>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Age</label>
+                        <input type="number" class="form-control" th:field="*{age}" min="18" max="100" required>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Gender</label>
+                        <select class="form-select" th:field="*{gender}">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Travel Dates -->
+                <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                        <label class="form-label">Departure Date</label>
+                        <input type="date" class="form-control" th:field="*{departure}" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Return Date</label>
+                        <input type="date" class="form-control" th:field="*{returndate}" required>
+                    </div>
+                </div>
+
+
+<div class="mb-4">
+    <label class="form-label">Destination</label>
+    <div class="radio-group">
+        <!-- Gujarat -->
+        <label>
+            <input type="radio" name="destination" value="Gujarat" th:field="*{destination}" hidden>
+            <div class="radio-card">
+                <h5>India, Gujarat</h5>
+            </div>
+        </label>
+
+        <!-- Kanagawa -->
+        <label>
+            <input type="radio" name="destination" value="Kanagawa" th:field="*{destination}" hidden>
+            <div class="radio-card">
+                <h5>Japan, Kanagawa</h5>
+            </div>
+        </label>
+
+        <!-- Paris -->
+        <label>
+            <input type="radio" name="destination" value="Paris" th:field="*{destination}" hidden>
+            <div class="radio-card">
+                <h5>France, Paris</h5>
+            </div>
+        </label>
+
+        <!-- Cologne -->
+        <label>
+            <input type="radio" name="destination" value="Cologne" th:field="*{destination}" hidden>
+            <div class="radio-card">
+                <h5>Germany, Cologne</h5>
+            </div>
+        </label>
+
+        <!-- Dubai -->
+        <label>
+            <input type="radio" name="destination" value="Dubai" th:field="*{destination}" hidden>
+            <div class="radio-card">
+                <h5>UAE, Dubai</h5>
+            </div>
+        </label>
+
+        <!-- New York -->
+        <label>
+            <input type="radio" name="destination" value="New York" th:field="*{destination}" hidden>
+            <div class="radio-card">
+                <h5>USA, New York</h5>
+            </div>
+        </label>
+
+        <!-- Port Blair -->
+        <label>
+            <input type="radio" name="destination" value="Port Blair" th:field="*{destination}" hidden>
+            <div class="radio-card">
+                <h5>Andaman & Nicobar, Port Blair</h5>
+            </div>
+        </label>
+
+        <!-- Rome -->
+        <label>
+            <input type="radio" name="destination" value="Rome" th:field="*{destination}" hidden>
+            <div class="radio-card">
+                <h5>Italy, Rome</h5>
+            </div>
+        </label>
+    </div>
+</div>
+
+                <!-- Package Radio Buttons -->
+<div class="mb-4">
+    <label class="form-label">Package</label>
+    <div class="radio-group">
+        <!-- Bronze -->
+        <label>
+            <input type="radio" name="travelPacakge" value="Bronze" th:field="*{travelPacakge}" hidden>
+            <div class="radio-card">
+                <h5>Bronze</h5>
+                <p class="mb-1">2 Star Hotel, 5 Nights Stay, Free Photo Session</p>
+                <div class="price">₹19,999/-</div>
+            </div>
+        </label>
+
+        <!-- Silver -->
+        <label>
+            <input type="radio" name="travelPacakge" value="Silver" th:field="*{travelPacakge}" hidden>
+            <div class="radio-card">
+                <h5>Silver</h5>
+                <p class="mb-1">3 Star Hotel, 7 Nights Stay, Airport Transfers</p>
+                <div class="price">₹29,999/-</div>
+            </div>
+        </label>
+
+        <!-- Gold -->
+        <label>
+            <input type="radio" name="travelPacakge" value="Gold" th:field="*{travelPacakge}" hidden>
+            <div class="radio-card">
+                <h5>Gold</h5>
+                <p class="mb-1">4 Star Hotel, 10 Nights, Breakfast & Dinner</p>
+                <div class="price">₹39,999/-</div>
+            </div>
+        </label>
+
+        <!-- Platinum -->
+        <label>
+            <input type="radio" name="travelPacakge" value="Platinum" th:field="*{travelPacakge}" hidden>
+            <div class="radio-card">
+                <h5>Platinum</h5>
+                <p class="mb-1">5 Star Luxury, 14 Nights, All Meals Included</p>
+                <div class="price">₹49,999/-</div>
+            </div>
+        </label>
+    </div>
+</div>
+
+                <div class="d-grid">
+                    <!-- <button type="submit" class="btn btn-primary btn-lg">Confirm Booking</button> -->
+                    <input type="submit" class="btn btn-primary btn-lg" value="Confirm Booking">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

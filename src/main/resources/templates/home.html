@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Travel Addicts</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;700&display=swap"
+	rel="stylesheet">
+	
+	
+<style>
+
+    :root {
+        --primary-dark: #1a365d;
+        --accent-gold: #c5a47e;
+        --light-bg: #f8f7f4;
+        --text-dark: #2d2d2b;
+        --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    body {
+        font-family: 'Lora', serif;
+        color: var(--text-dark);
+        line-height: 1.7;
+        background-color: var(--light-bg);
+        padding-top: 100px;
+    }
+
+    h1, h2, h3, h4, h5 {
+        font-family: 'Playfair Display', serif;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+    }
+
+    ::selection {
+        background: var(--accent-gold);
+        color: white;
+    }
+
+    .navbar {
+        background: rgba(255, 255, 255, 0.98) !important;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+        padding: 1rem 0;
+        transition: var(--transition);
+    }
+
+    .navbar-brand {
+        font-size: 2rem;
+        color: var(--primary-dark) !important;
+        position: relative;
+    }
+
+    .navbar-brand::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background: var(--accent-gold);
+    }
+
+    .nav-link {
+        color: var(--text-dark) !important;
+        font-weight: 500;
+        margin: 0 1.5rem;
+        position: relative;
+        transition: var(--transition);
+    }
+
+    .nav-link::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--accent-gold);
+        transition: var(--transition);
+    }
+
+    .nav-link:hover::before {
+        width: 100%;
+    }
+
+    /* Logout Button Styles */
+    .logout-btn {
+        color: var(--text-dark) !important;
+        font-weight: 500;
+        margin: 0 1.5rem;
+        padding: 8px 15px !important;
+        text-decoration: none;
+        background: none !important;
+        border: none !important;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .logout-btn::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--accent-gold);
+        transition: var(--transition);
+    }
+
+    .logout-btn:hover {
+        color: var(--accent-gold) !important;
+        transform: translateY(-2px);
+    }
+
+    .logout-btn:hover::before {
+        width: 100%;
+    }
+
+    .hero-section {
+        height: 90vh;
+        background: linear-gradient(45deg, rgba(26, 54, 93, 0.9), rgba(26, 54, 93, 0.85)),
+                    url('https://source.unsplash.com/random/1920x1080/?travel') center/cover fixed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        margin-bottom: 5rem;
+    }
+
+
+    .hero-section h1 {
+        font-size: 4rem;
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+        margin-bottom: 2rem;
+        animation: fadeInUp 1s ease-out;
+    }
+
+    .hero-section p {
+        font-size: 1.4rem;
+        max-width: 700px;
+        margin: 0 auto 2.5rem;
+        animation: fadeInUp 1s ease-out 0.2s forwards;
+        opacity: 0;
+    }
+
+    .service-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: var(--transition);
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.06);
+    }
+
+    .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+    }
+
+    .service-card img {
+        height: 250px;
+        object-fit: cover;
+        transition: var(--transition);
+        border-bottom: 3px solid var(--accent-gold);
+    }
+
+    .service-card:hover img {
+        transform: scale(1.05);
+    }
+
+    .card-body {
+        padding: 2rem;
+    }
+
+    .location-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        transition: var(--transition);
+    }
+
+    .location-card img {
+        height: 300px;
+        object-fit: cover;
+        filter: grayscale(20%);
+        transition: var(--transition);
+    }
+
+    .location-card:hover img {
+        filter: grayscale(0);
+        transform: scale(1.03);
+    }
+
+    .location-card h5 {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+        color: white;
+        padding: 1.5rem;
+        margin: 0;
+    }
+
+    /* ====== Packages Section ====== */
+    .package-card {
+        background: white;
+        border: 2px solid var(--light-bg);
+        border-radius: 12px;
+        overflow: hidden;
+        transition: var(--transition);
+        position: relative;
+    }
+
+    .package-card::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(45deg, 
+            transparent 45%, 
+            rgba(193, 155, 98, 0.1) 50%, 
+            transparent 55%);
+        animation: shine 3s infinite;
+    }
+
+    .package-card:hover {
+        border-color: var(--accent-gold);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .price {
+        color: var(--primary-dark);
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin: 1.5rem 0;
+    }
+
+    footer {
+        background: var(--primary-dark);
+        color: white;
+        padding: 4rem 0 2rem;
+        clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
+    }
+
+    footer h5 {
+        color: var(--accent-gold);
+        margin-bottom: 1.5rem;
+    }
+
+    footer a {
+        color: rgba(255, 255, 255, 0.8) !important;
+        text-decoration: none;
+        transition: var(--transition);
+    }
+
+    footer a:hover {
+        color: var(--accent-gold) !important;
+        padding-left: 5px;
+    }
+
+    .social-links a {
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 0.5rem;
+        transition: var(--transition);
+    }
+
+    .social-links a:hover {
+        background: var(--accent-gold);
+        transform: translateY(-3px);
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes shine {
+        from { transform: translateX(-50%) rotate(45deg); }
+        to { transform: translateX(50%) rotate(45deg); }
+    }
+
+    @media (max-width: 992px) {
+        .hero-section h1 {
+            font-size: 3rem;
+        }
+
+        .service-card {
+            margin-bottom: 2rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        body {
+            padding-top: 80px;
+        }
+
+        .hero-section {
+            height: 70vh;
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+        }
+
+        .nav-link {
+            margin: 0 0.5rem;
+        }
+    }
+    
+#lout {
+    color: var(--text-dark) !important;
+    font-weight: 500;
+    margin: 0 1.5rem;
+    position: relative;
+    padding: 8px 15px !important;
+    text-decoration: none;
+    background: none !important;
+    border: none !important;
+    margin: auto;
+}
+
+#lout::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-gold);
+    transition: var(--transition);
+}
+
+#lout:hover {
+    color: var(--accent-gold) !important;
+    transform: translateY(-2px);
+}
+
+#lout:hover::before {
+    width: 100%;
+}
+
+ .video-hero {
+        position: relative;
+        height: 90vh;
+        overflow: hidden;
+        margin-bottom: 5rem;
+    }
+
+    #bg-video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        min-width: 100%;
+        min-height: 100%;
+        z-index: 0;
+        filter: brightness(0.8);
+    }
+
+    .video-content {
+        position: relative;
+        z-index: 1;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        background: rgba(26, 54, 93, 0.4);
+    }
+</style>
+</head>
+
+<body>
+
+
+
+	<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+	<img alt="Logo" src="/Images/19_Logo.png" width="65px" style="margin-left: 10px">
+        <div class="container">
+            <a class="navbar-brand" href="#">Travel Addicts</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+            	
+                <ul class="navbar-nav ms-auto">
+                	
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#locations">Locations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#packages">Packages</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+                    <!-- Logout Button -->
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <form th:action="@{/logout}" method="get">
+                            <button type="submit" class="logout-btn">
+                                Logout
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<section class="video-hero" id="home">
+    <video autoplay muted loop id="bg-video">
+        <source src="/Images/bgvid.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+    
+    <div class="video-content">
+        <div class="hero-text">
+            <h1 class="display-4 mb-4">Travel Addicts</h1>
+            <p class="lead fs-4" style="max-width: 800px; margin: 0 auto; padding: 0 20px;">
+                Plan your trip with us and travel around the world with the most affordable packages!
+            </p>
+            <a href="/bookingPage" class="btn btn-primary btn-lg mt-4">Book Now</a>
+        </div>
+    </div>
+</section>
+
+
+	<section class="py-5 bg-light">
+		<div class="container">
+			<h2 class="text-center section-heading mb-5">Our Premium
+				Services</h2>
+			<div class="row g-4">
+				<div class="col-md-3">
+					<div class="card service-card h-100">
+						<img src="/Images/1_Flight_Service.jpg" class="card-img-top"
+							alt="Flight Services">
+						<div class="card-body text-center">
+							<h5 class="card-title">Flight Services</h5>
+							<p class="card-text">Premium flight bookings with 24/7
+								support</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="card service-card h-100">
+						<img src="/Images/2_Food_Service.jpg" class="card-img-top"
+							alt="Food Services">
+						<div class="card-body text-center">
+							<h5 class="card-title">Food Services</h5>
+							<p class="card-text">Curated culinary experiences worldwide</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="card service-card h-100">
+						<img src="/Images/3_Travel_Service.jpg" class="card-img-top"
+							alt="Travel Services">
+						<div class="card-body text-center">
+							<h5 class="card-title">Travel Services</h5>
+							<p class="card-text">End-to-end travel management solutions</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="card service-card h-100">
+						<img src="/Images/4_Hotel_Service.jpg" class="card-img-top"
+							alt="Hostel Services">
+						<div class="card-body text-center">
+							<h5 class="card-title">Hostel Services</h5>
+							<p class="card-text">Quality budget accommodations worldwide</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="py-5" id="locations">
+		<div class="container">
+			<h2 class="text-center section-heading mb-5">Exquisite Locations</h2>
+			
+			<div class="row g-4">
+				<div class="col-md-4">
+					<div class="card location-card h-100">
+					<a href="/Gujarat">
+						<img src="/Images/5_Gujarat_India.jpg" class="card-img-top"
+							alt="Gujarat">
+						<h5>India, Gujarat</h5>
+					</a>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="card location-card h-100">
+					<a href="/Kanagawa">
+						<img src="/Images/6_Japan_Kanagawa.jpg" class="card-img-top"
+							alt="Kanagawa">
+						<h5>Japan, Kanagawa</h5>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="card location-card h-100">
+					<a href="/Paris">
+						<img src="/Images/7_France_Paris.jpg" class="card-img-top"
+							alt="Paris">
+						<h5>France, Paris</h5>
+					</a>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="card location-card h-100">
+					<a href="/Cologne">
+						<img src="/Images/8_Germany_Cologne.jpg" class="card-img-top"
+							alt="Cologne">
+						<h5>Germany, Cologne</h5>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="card location-card h-100">
+					<a href="/Dubai">
+						<img src="/Images/9_UAE_Dubai.jpg" class="card-img-top"
+							alt="Dubai">
+						<h5>UAE, Dubai</h5>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="card location-card h-100">
+					<a href="/NewYork">
+						<img src="/Images/10_USA_NewYork.jpg" class="card-img-top"
+							alt="New York">
+						<h5>USA, New York</h5>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="card location-card h-100">
+					<a href="/PortBlair">
+						<img src="/Images/11_Andaman&Nicobar_PortBlair.jpg"
+							class="card-img-top" alt="Andaman">
+						<h5>Andaman & Nicobar, Port Blair</h5>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-4">
+				
+					<div class="card location-card h-100">
+					<a href="/Rome">
+						<img src="/Images/12_Italy_Rome.jpg" class="card-img-top"
+							alt="Rome">
+						<h5>Italy, Rome</h5>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="py-5 bg-light" id="packages">
+		<div class="container">
+			<h2 class="text-center section-heading mb-5">Curated Packages</h2>
+			<div class="row g-4">
+				<div class="col-md-3">
+					<div class="card package-card h-100">
+						<img src="/Images/13_Bronze.jpg" class="card-img-top"
+							alt="Bronze Package">
+						<div class="card-body">
+							<h3 class="mb-4 text-center">Bronze</h3>
+							<ul class="list-unstyled">
+								<li>✓ 2 Star Hotel Accommodation</li>
+								<li>✓ 5 Nights Stay</li>
+								<li>✓ Free Professional Photo Session</li>
+								<li>✓ Certified Tour Guide</li>
+								<li>✓ 24/7 Customer Support</li>
+							</ul>
+							<div class="price">Rs.19,999/-</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="card package-card h-100">
+						<img src="/Images/14_Silver.jpg" class="card-img-top"
+							alt="Silver Package">
+						<div class="card-body">
+							<h3 class="mb-4 text-center">Silver</h3>
+							<ul class="list-unstyled">
+								<li>✓ 3 Star Hotel Accommodation</li>
+								<li>✓ 7 Nights Stay</li>
+								<li>✓ Free Professional Photo Session</li>
+								<li>✓ Certified Tour Guide</li>
+								<li>✓ Airport Transfers</li>
+								<li>✓ 24/7 Customer Support</li>
+							</ul>
+							<div class="price">Rs.29,999/-</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="card package-card h-100">
+						<img src="/Images/15_Gold.jpg" class="card-img-top"
+							alt="Gold Package">
+						<div class="card-body">
+							<h3 class="mb-4 text-center">Gold</h3>
+							<ul class="list-unstyled">
+								<li>✓ 4 Star Hotel Accommodation</li>
+								<li>✓ 10 Nights Stay</li>
+								<li>✓ Breakfast & Dinner Included</li>
+								<li>✓ Free Professional Photo Session</li>
+								<li>✓ Certified Tour Guide</li>
+								<li>✓ Airport Transfers</li>
+								<li>✓ 24/7 Customer Support</li>
+							</ul>
+							<div class="price">Rs.39,999/-</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="card package-card h-100">
+						<img src="/Images/16_Platinum.jpg" class="card-img-top"
+							alt="Platinum Package">
+						<div class="card-body">
+							<h3 class="mb-4 text-center">Platinum</h3>
+							<ul class="list-unstyled">
+								<li>✓ 5 Star Luxury Accommodation</li>
+								<li>✓ 14 Nights Stay</li>
+								<li>✓ All Meals Included</li>
+								<li>✓ Private Beach Access</li>
+								<li>✓ Spa Treatments</li>
+								<li>✓ Free Professional Photo Session</li>
+								<li>✓ Certified Tour Guide</li>
+								<li>✓ 24/7 Customer Support</li>
+							</ul>
+							<div class="price">Rs.49,999/-</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<footer class="bg-dark text-white py-5" id="about">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<h5>Quick Links</h5>
+					<ul class="list-unstyled">
+						<li><a href="#home">Home</a></li>
+						<li><a href="#locations">Locations</a></li>
+						<li><a href="#packages">Packages</a></li>
+						<li><a href="#about">About Us</a></li>
+						<li><a href="#contact">Contact Us</a></li>
+					</ul>
+				</div>
+				<div class="col-md-4">
+					<h5>Contact Information</h5>
+					<ul class="list-unstyled">
+						<li><i class="fas fa-map-marker-alt me-2"></i>Vallabh Vidhyanagar, Anand</li>
+						<li><i class="fas fa-phone me-2"></i>+91 987654321</li>
+						<li><i class="fas fa-envelope me-2"></i>afnanmafat@gmail.com</li>
+					</ul>
+					<div class="mt-4">
+						<h5>Payment Methods</h5>
+						<img src="https://img.icons8.com/color/48/000000/visa.png"
+							alt="Visa"> <img
+							src="https://img.icons8.com/color/48/000000/mastercard.png"
+							alt="Mastercard"> <img
+							src="https://img.icons8.com/color/48/000000/paypal.png"
+							alt="Paypal">
+					</div>
+				</div>
+				<div class="col-md-4">
+					<h5>Follow Us</h5>
+					<div class="social-links">
+						<a href="#" class="text-white me-3"><i
+							class="fab fa-facebook-f fa-2x"></i></a> <a href="#"
+							class="text-white me-3"><i class="fab fa-twitter fa-2x"></i></a>
+						<a href="#" class="text-white me-3"><i
+							class="fab fa-instagram fa-2x"></i></a> <a href="#"
+							class="text-white"><i class="fab fa-linkedin-in fa-2x"></i></a>
+					</div>
+					<div class="mt-4">
+						<h5>Newsletter</h5>
+						<form>
+							<div class="input-group">
+								<input type="email" class="form-control"
+									placeholder="Enter your email">
+								<button class="btn btn-outline-light" type="button">Subscribe</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="text-center mt-5 pt-3 border-top">
+				<p class="mb-0">&copy; 2025 Travel Addicts. All rights reserved.</p>
+				<p class="mb-0">
+					Designed  <i class="fas fa-heart text-danger"></i> by Afnan Mafat
+				</p>
+			</div>
+		</div>
+	</footer>
+
+	<script src="https://kit.fontawesome.com/your-fontawesome-kit.js"
+		crossorigin="anonymous"></script>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar');
+        window.scrollY > 50 
+            ? navbar.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.1)'
+            : navbar.style.boxShadow = 'none';
+    });
+</script>
+</body>
+
+</html>

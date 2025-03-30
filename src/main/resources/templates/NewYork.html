@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statue of Liberty - New York's Icon</title>
+    <style>
+        .navbar {
+            background-color: #8B4513;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #FAF0E6;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #D2B48C;
+            text-decoration: underline;
+        }
+
+        body {
+            font-family: 'Garamond', serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 90px 20px 20px;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #8B4513;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            color: #8B4513;
+            font-size: 2.8em;
+            margin: 15px 0;
+        }
+
+        .monument-image {
+            width: 100%;
+            height: auto;
+            border: 5px solid #D2B48C;
+            margin: 20px 0;
+        }
+
+        .section {
+            margin: 25px 0;
+            padding: 15px;
+            background: #FAF0E6;
+            border-left: 4px solid #CD853F;
+        }
+
+        .facts-list {
+            columns: 2;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .facts-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #D2B48C;
+        }
+
+        .quote {
+            font-style: italic;
+            text-align: center;
+            margin: 25px 0;
+            color: #696969;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .facts-list {
+                columns: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <img src="/Images/19_Logo.png" alt="Website Logo" class="logo">
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/home#locations">Locations</a></li>
+            <li><a href="/home#packages">Packages</a></li>
+            <li><a href="/home#about">About Us</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="header">
+        <h1>Statue of Liberty</h1>
+        <h3>Symbol of Freedom</h3>
+    </div>
+
+    <img src="/Images/t6.jpg" 
+         alt="Statue of Liberty" 
+         class="monument-image" style="height:250px; width:250px; margin-left: 35%;">
+
+    <div class="section">
+        <h2>About the Monument</h2>
+        <p>The Statue of Liberty is a colossal neoclassical sculpture on Liberty Island in New York Harbor. Gifted by France in 1886, this copper statue represents Libertas, the Roman goddess of freedom, holding a torch and a tabula ansata inscribed with July 4, 1776.</p>
+    </div>
+
+    <div class="section">
+        <h2>Key Features</h2>
+        <ul class="facts-list">
+            <li>🗽 Height: 93 meters (305 ft) including pedestal</li>
+            <li>📍 Location: Liberty Island, New York Harbor</li>
+            <li>⚒ Construction: 1875-1886</li>
+            <li>🎨 Designer: Frédéric Auguste Bartholdi</li>
+            <li>🏗 Framework: Gustave Eiffel</li>
+            <li>📜 Status: UNESCO World Heritage Site</li>
+        </ul>
+    </div>
+
+    <div class="quote">
+        "Give me your tired, your poor,<br>
+        Your huddled masses yearning to breathe free..."<br>
+        - Emma Lazarus (The New Colossus)
+    </div>
+
+    <div class="section">
+        <h2>Visitor Information</h2>
+        <dl>
+            <dt>🕒 Opening Hours:</dt>
+            <dd>8:30 AM - 6:45 PM Daily</dd>
+            
+            <dt>🎟 Entry Fee:</dt>
+            <dd>Ferry Ticket: $24.50 adults | $12 children</dd>
+            
+            <dt>⛴ Access:</dt>
+            <dd>Ferry from Battery Park or Liberty State Park</dd>
+            
+            <dt>📌 Note:</dt>
+            <dd>Crown access requires advance reservation</dd>
+        </dl>
+    </div>
+</div>
+</body>
+</html>
