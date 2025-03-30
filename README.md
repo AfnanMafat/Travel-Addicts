@@ -90,5 +90,5 @@ src/main/resources
 - Bootstrap for UI components  
 - MySQL for relational data management  
 
-**Built with by [Afnan Mafat]**  
+**Built with by Afnan Mafat**  
 
