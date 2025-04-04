@@ -4,15 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Statue of Liberty - New York's Icon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #2C3E50;
+            --accent-color: #E67E22;
+            --dark-blue: #1A5276;
+            --light-cream: #FDF2E9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.7;
+            background: linear-gradient(45deg, #FDF2E9, #FFFFFF);
+            color: #2C3E50;
+        }
+
         .navbar {
-            background-color: #8B4513;
-            padding: 10px 20px;
+            background: rgba(44, 62, 80, 0.95);
+            backdrop-filter: blur(5px);
+            padding: 1rem 2rem;
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
 
         .nav-container {
@@ -24,171 +46,301 @@
         }
 
         .logo {
-            height: 40px;
-            width: auto;
+            height: 50px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: rotate(-5deg);
         }
 
         .nav-links {
-            list-style: none;
-            margin: 0;
-            padding: 0;
             display: flex;
-            gap: 30px;
+            gap: 2rem;
+            list-style: none;
         }
 
         .nav-links a {
-            color: #FAF0E6;
+            color: var(--light-cream);
             text-decoration: none;
-            font-size: 1.1em;
-            transition: color 0.3s ease;
+            font-weight: 700;
+            position: relative;
+            padding: 0.5rem 0;
         }
 
-        .nav-links a:hover {
-            color: #D2B48C;
-            text-decoration: underline;
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
         }
 
-        body {
-            font-family: 'Garamond', serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 90px 20px 20px;
-            background: #f5f5f5;
-            color: #333;
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            position: relative;
+            margin-top: 80px;
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+                        url('/Images/t6.jpg') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 1rem;
         }
 
         .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 30px;
-            border: 1px solid #ddd;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-
-        .header {
-            text-align: center;
-            border-bottom: 3px solid #8B4513;
-            padding-bottom: 20px;
-            margin-bottom: 25px;
-        }
-
-        h1 {
-            color: #8B4513;
-            font-size: 2.8em;
-            margin: 15px 0;
-        }
-
-        .monument-image {
-            width: 100%;
-            height: auto;
-            border: 5px solid #D2B48C;
-            margin: 20px 0;
+            max-width: 1200px;
+            margin: -100px auto 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
         }
 
         .section {
-            margin: 25px 0;
-            padding: 15px;
-            background: #FAF0E6;
-            border-left: 4px solid #CD853F;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: var(--light-cream);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
         }
 
-        .facts-list {
-            columns: 2;
-            list-style-type: none;
-            padding: 0;
+        .section:hover {
+            transform: translateY(-5px);
         }
 
-        .facts-list li {
-            padding: 8px 0;
-            border-bottom: 1px dashed #D2B48C;
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--dark-blue);
+            margin-bottom: 1.5rem;
+            position: relative;
         }
 
-        .quote {
-            font-style: italic;
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-color);
+        }
+
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem;
+        }
+
+        .fact-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
             text-align: center;
-            margin: 25px 0;
-            color: #696969;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        @media (max-width: 600px) {
+        .fact-card i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .quote-block {
+            background: var(--primary-color);
+            color: white;
+            padding: 3rem;
+            margin: 3rem 0;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quote-block::before {
+            content: '❝';
+            position: absolute;
+            font-size: 8rem;
+            opacity: 0.1;
+            top: -30px;
+            left: 10px;
+        }
+
+        .quote-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .visitor-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            background: var(--light-cream);
+            border-radius: 10px;
+        }
+
+        .info-card {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .info-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
             .container {
-                padding: 15px;
+                margin-top: -50px;
+                padding: 1rem;
             }
-            
-            h1 {
-                font-size: 2em;
-            }
-            
-            .facts-list {
-                columns: 1;
-            }
+        }
+
+        .scroll-effect {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .scroll-effect.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <img src="/Images/19_Logo.png" alt="Website Logo" class="logo">
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/home#locations">Locations</a></li>
+                <li><a href="/home#packages">Packages</a></li>
+                <li><a href="/home#about">About Us</a></li>
+            </ul>
+        </div>
+    </nav>
 
-<nav class="navbar">
-    <div class="nav-container">
-        <img src="/Images/19_Logo.png" alt="Website Logo" class="logo">
-        <ul class="nav-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="/home#locations">Locations</a></li>
-            <li><a href="/home#packages">Packages</a></li>
-            <li><a href="/home#about">About Us</a></li>
-        </ul>
-    </div>
-</nav>
-
-<div class="container">
-    <div class="header">
-        <h1>Statue of Liberty</h1>
-        <h3>Symbol of Freedom</h3>
-    </div>
-
-    <img src="/Images/t6.jpg" 
-         alt="Statue of Liberty" 
-         class="monument-image" style="height:250px; width:250px; margin-left: 35%;">
-
-    <div class="section">
-        <h2>About the Monument</h2>
-        <p>The Statue of Liberty is a colossal neoclassical sculpture on Liberty Island in New York Harbor. Gifted by France in 1886, this copper statue represents Libertas, the Roman goddess of freedom, holding a torch and a tabula ansata inscribed with July 4, 1776.</p>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Statue of Liberty</h1>
+            <p>Beacon of Freedom</p>
+        </div>
     </div>
 
-    <div class="section">
-        <h2>Key Features</h2>
-        <ul class="facts-list">
-            <li>🗽 Height: 93 meters (305 ft) including pedestal</li>
-            <li>📍 Location: Liberty Island, New York Harbor</li>
-            <li>⚒ Construction: 1875-1886</li>
-            <li>🎨 Designer: Frédéric Auguste Bartholdi</li>
-            <li>🏗 Framework: Gustave Eiffel</li>
-            <li>📜 Status: UNESCO World Heritage Site</li>
-        </ul>
+    <div class="container">
+        <div class="section scroll-effect">
+            <h2>Icon of Democracy</h2>
+            <p>Standing tall in New York Harbor since 1886, Lady Liberty has welcomed millions of immigrants to America. This copper colossus, designed by Frédéric Auguste Bartholdi with engineering by Gustave Eiffel, remains a powerful symbol of freedom and democracy.</p>
+        </div>
+
+        <div class="facts-grid scroll-effect">
+            <div class="fact-card">
+                <i>🗽</i>
+                <h3>Height</h3>
+                <p>93 meters (305 ft)</p>
+            </div>
+            <div class="fact-card">
+                <i>⏳</i>
+                <h3>Construction</h3>
+                <p>1875-1886</p>
+            </div>
+            <div class="fact-card">
+                <i>🌍</i>
+                <h3>Material</h3>
+                <p>Copper & Steel</p>
+            </div>
+        </div>
+
+        <div class="quote-block scroll-effect">
+            <div class="quote-text">
+                "Give me your tired, your poor,<br>
+                Your huddled masses yearning to breathe free"
+            </div>
+            <p style="margin-top: 1rem;">- Emma Lazarus</p>
+        </div>
+
+        <div class="section scroll-effect">
+            <h2>Visitor Experience</h2>
+            <div class="visitor-info">
+                <div class="info-card">
+                    <div class="info-icon">⏰</div>
+                    <h3>Opening Hours</h3>
+                    <p>8:30 AM - 6:45 PM<br>Daily Access</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">🎟️</div>
+                    <h3>Tickets</h3>
+                    <p>Ferry: $24.50<br>Children $12</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">⛴️</div>
+                    <h3>Access</h3>
+                    <p>Ferry from<br>Battery Park</p>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="quote">
-        "Give me your tired, your poor,<br>
-        Your huddled masses yearning to breathe free..."<br>
-        - Emma Lazarus (The New Colossus)
-    </div>
+    <script>
 
-    <div class="section">
-        <h2>Visitor Information</h2>
-        <dl>
-            <dt>🕒 Opening Hours:</dt>
-            <dd>8:30 AM - 6:45 PM Daily</dd>
-            
-            <dt>🎟 Entry Fee:</dt>
-            <dd>Ferry Ticket: $24.50 adults | $12 children</dd>
-            
-            <dt>⛴ Access:</dt>
-            <dd>Ferry from Battery Park or Liberty State Park</dd>
-            
-            <dt>📌 Note:</dt>
-            <dd>Crown access requires advance reservation</dd>
-        </dl>
-    </div>
-</div>
+        const scrollElements = document.querySelectorAll('.scroll-effect');
+        
+        const elementInView = (el) => {
+            const elementTop = el.getBoundingClientRect().top;
+            return elementTop <= window.innerHeight * 0.9;
+        };
+
+        const displayScrollElement = (element) => {
+            element.classList.add('visible');
+        };
+
+        const handleScrollAnimation = () => {
+            scrollElements.forEach((el) => {
+                if (elementInView(el)) {
+                    displayScrollElement(el);
+                }
+            });
+        };
+
+        window.addEventListener('scroll', () => {
+            handleScrollAnimation();
+        });
+
+        handleScrollAnimation();
+    </script>
 </body>
 </html>

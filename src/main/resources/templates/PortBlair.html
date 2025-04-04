@@ -4,15 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Port Blair - Gateway to Andaman</title>
-   <style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2C3E50;
+            --accent-color: #E67E22;
+            --dark-blue: #1A5276;
+            --light-cream: #FDF2E9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.7;
+            background: linear-gradient(45deg, #FDF2E9, #FFFFFF);
+            color: #2C3E50;
+        }
+
         .navbar {
-            background-color: #8B4513;
-            padding: 10px 20px;
+            background: rgba(44, 62, 80, 0.95);
+            backdrop-filter: blur(5px);
+            padding: 1rem 2rem;
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
 
         .nav-container {
@@ -24,170 +46,300 @@
         }
 
         .logo {
-            height: 40px;
-            width: auto;
+            height: 50px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: rotate(-5deg);
         }
 
         .nav-links {
-            list-style: none;
-            margin: 0;
-            padding: 0;
             display: flex;
-            gap: 30px;
+            gap: 2rem;
+            list-style: none;
         }
 
         .nav-links a {
-            color: #FAF0E6;
+            color: var(--light-cream);
             text-decoration: none;
-            font-size: 1.1em;
-            transition: color 0.3s ease;
+            font-weight: 700;
+            position: relative;
+            padding: 0.5rem 0;
         }
 
-        .nav-links a:hover {
-            color: #D2B48C;
-            text-decoration: underline;
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
         }
 
-        body {
-            font-family: 'Garamond', serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 90px 20px 20px;
-            background: #f5f5f5;
-            color: #333;
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            position: relative;
+            margin-top: 80px;
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+                        url('/Images/t7.jpg') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 1rem;
         }
 
         .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 30px;
-            border: 1px solid #ddd;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-
-        .header {
-            text-align: center;
-            border-bottom: 3px solid #8B4513;
-            padding-bottom: 20px;
-            margin-bottom: 25px;
-        }
-
-        h1 {
-            color: #8B4513;
-            font-size: 2.8em;
-            margin: 15px 0;
-        }
-
-        .monument-image {
-            width: 100%;
-            height: auto;
-            border: 5px solid #D2B48C;
-            margin: 20px 0;
+            max-width: 1200px;
+            margin: -100px auto 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
         }
 
         .section {
-            margin: 25px 0;
-            padding: 15px;
-            background: #FAF0E6;
-            border-left: 4px solid #CD853F;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: var(--light-cream);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
         }
 
-        .facts-list {
-            columns: 2;
-            list-style-type: none;
-            padding: 0;
+        .section:hover {
+            transform: translateY(-5px);
         }
 
-        .facts-list li {
-            padding: 8px 0;
-            border-bottom: 1px dashed #D2B48C;
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--dark-blue);
+            margin-bottom: 1.5rem;
+            position: relative;
         }
 
-        .quote {
-            font-style: italic;
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-color);
+        }
+
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem;
+        }
+
+        .fact-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
             text-align: center;
-            margin: 25px 0;
-            color: #696969;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        @media (max-width: 600px) {
+        .fact-card i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .quote-block {
+            background: var(--primary-color);
+            color: white;
+            padding: 3rem;
+            margin: 3rem 0;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quote-block::before {
+            content: '❝';
+            position: absolute;
+            font-size: 8rem;
+            opacity: 0.1;
+            top: -30px;
+            left: 10px;
+        }
+
+        .quote-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .visitor-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            background: var(--light-cream);
+            border-radius: 10px;
+        }
+
+        .info-card {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .info-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
             .container {
-                padding: 15px;
+                margin-top: -50px;
+                padding: 1rem;
             }
-            
-            h1 {
-                font-size: 2em;
-            }
-            
-            .facts-list {
-                columns: 1;
-            }
+        }
+
+        .scroll-effect {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .scroll-effect.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <img src="/Images/19_Logo.png" alt="Website Logo" class="logo">
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/home#locations">Locations</a></li>
+                <li><a href="/home#packages">Packages</a></li>
+                <li><a href="/home#about">About Us</a></li>
+            </ul>
+        </div>
+    </nav>
 
-<nav class="navbar">
-    <div class="nav-container">
-        <img src="/Images/19_Logo.png" alt="Website Logo" class="logo">
-        <ul class="nav-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="/home#locations">Locations</a></li>
-            <li><a href="/home#packages">Packages</a></li>
-            <li><a href="/home#about">About Us</a></li>
-        </ul>
-    </div>
-</nav>
-
-<div class="container">
-    <div class="header">
-        <h1>Port Blair</h1>
-        <h3>Jewel of Andaman & Nicobar Islands</h3>
-    </div>
-
-    <img src="/Images/t7.jpg" 
-         alt="Port Blair Landscape" 
-         class="monument-image" style="height:250px; width:250px; margin-left: 35%;">
-
-    <div class="section">
-        <h2>About the Destination</h2>
-        <p>Port Blair, the capital of Andaman & Nicobar Islands, is a tropical paradise known for its pristine beaches, colonial history, and vibrant marine life. The city houses the historic Cellular Jail, a national memorial of India's freedom struggle.</p>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Port Blair</h1>
+            <p>Gateway to Andaman & Nicobar</p>
+        </div>
     </div>
 
-    <div class="section">
-        <h2>Key Attractions</h2>
-        <ul class="facts-list">
-            <li>🏛 Historical: Cellular Jail National Memorial</li>
-            <li>🏖 Beaches: Corbyn's Cove, Wandoor</li>
-            <li>🐠 Marine Life: Mahatma Gandhi Marine Park</li>
-            <li>⛵ Water Sports: Scuba, Snorkeling, Sea Walks</li>
-            <li>🏝 Nearby Islands: Ross Island, Havelock</li>
-            <li>🌴 Unique Feature: Tropical Rainforests</li>
-        </ul>
+    <div class="container">
+        <div class="section scroll-effect">
+            <h2>Tropical Paradise</h2>
+            <p>Nestled in the Bay of Bengal, Port Blair serves as the vibrant capital of Andaman & Nicobar Islands. Known for its colonial history at Cellular Jail, pristine beaches like Corbyn's Cove, and rich marine biodiversity, it offers a perfect blend of history and natural beauty.</p>
+        </div>
+
+        <div class="facts-grid scroll-effect">
+            <div class="fact-card">
+                <i>🏛️</i>
+                <h3>Historical Site</h3>
+                <p>Cellular Jail Memorial</p>
+            </div>
+            <div class="fact-card">
+                <i>🏖️</i>
+                <h3>Beaches</h3>
+                <p>Corbyn's Cove, Wandoor</p>
+            </div>
+            <div class="fact-card">
+                <i>🐠</i>
+                <h3>Marine Life</h3>
+                <p>Mahatma Gandhi Marine Park</p>
+            </div>
+        </div>
+
+        <div class="quote-block scroll-effect">
+            <div class="quote-text">
+                "The Andaman Islands are where the jungle meets the coral reef"
+            </div>
+            <p style="margin-top: 1rem;">- Sir Richard Attenborough</p>
+        </div>
+
+        <div class="section scroll-effect">
+            <h2>Visitor Information</h2>
+            <div class="visitor-info">
+                <div class="info-card">
+                    <div class="info-icon">⏳</div>
+                    <h3>Best Time</h3>
+                    <p>October to May</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">✈️</div>
+                    <h3>Air Access</h3>
+                    <p>Veer Savarkar Airport</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">⛴️</div>
+                    <h3>Sea Route</h3>
+                    <p>Ships from Mainland</p>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="quote">
-        "The Andaman Islands are where the jungle meets the coral reef"<br>
-        - Sir Richard Attenborough
-    </div>
+    <script>
 
-    <div class="section">
-        <h2>Visitor Information</h2>
-        <dl>
-            <dt>🕒 Best Time to Visit:</dt>
-            <dd>October to May</dd>
-            
-            <dt>🎟 Entry Fees:</dt>
-            <dd>Cellular Jail: ₹30 Indians | ₹100 Foreigners</dd>
-            
-            <dt>✈ Access:</dt>
-            <dd>Via Air: Veer Savarkar International Airport</dd>
-            
-            <dt>⛴ Sea Route:</dt>
-            <dd>Regular ships from Chennai/Kolkata/Vizag</dd>
-        </dl>
-    </div>
-</div>
+        const scrollElements = document.querySelectorAll('.scroll-effect');
+        
+        const elementInView = (el) => {
+            const elementTop = el.getBoundingClientRect().top;
+            return elementTop <= window.innerHeight * 0.9;
+        };
+
+        const displayScrollElement = (element) => {
+            element.classList.add('visible');
+        };
+
+        const handleScrollAnimation = () => {
+            scrollElements.forEach((el) => {
+                if (elementInView(el)) {
+                    displayScrollElement(el);
+                }
+            });
+        };
+
+        window.addEventListener('scroll', () => {
+            handleScrollAnimation();
+        });
+
+        handleScrollAnimation();
+    </script>
 </body>
 </html>
